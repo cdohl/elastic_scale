@@ -68,12 +68,11 @@ void setup() {
 }
 
 void loop() {
-//  Serial.print("one reading:\t");
+  int incomingByte = 0; 
   Serial.println(scale.get_units());
-//  Serial.print("\t| average:\t");
-//  Serial.println(scale.get_units(10), 1);
-
-  //scale.power_down();			        // put the ADC in sleep mode
-  //delay(100);
-  //scale.power_up();
+  if (Serial.available() > 0) {
+    incomingByte = Serial.read();
+    if (incomingByte == 42)
+      scale.tare();  
+  }
 }
